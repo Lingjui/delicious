@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<!-- struts的开发模式，默认值为false，改为true就是以后一旦就改这个文件中的配置就不用去重启tomcat -->
+	<!-- struts的开发模式 默认是false:生产模式 true：开发模式 struts.i18n.reload：自动加载 struts.configuration.xml.reload：自动加载 -->
+	<constant name="struts.multipart.saveDir" value="F:\\x"></constant>
+	<constant name="struts.multipart.maxSize" value="10240000" />
+	<!-- 上传文件的总开关,配置上传文件的大小,默认值是10240000 -->
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+	<!-- 处理国际化加载的资源文件（.properties）， 默认是false：当修改国际化资源文件，不自动加载 ture：自动加载资源文件 -->
+
+	<package name="userManager" extends="struts-default">
+		<action name="check" class="userAction" method="check">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="checkemail" class="userAction" method="checkemail">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="login" class="userAction" method="login">
+			<result type="chain">getMenuRow</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="getMenuRow" class="MenusAction" method="getMenuRow">
+			<result type="chain">getMenuList</result>
+		</action>
+		<action name="getMenuList" class="MenusAction" method="getMenuList">
+			<result name="success">main.jsp</result>
+		</action>
+
+		<action name="getZone" class="MenusAction" method="getMenuRow">
+			<result type="chain">getMenuList</result>
+			<result name="success">zone.jsp</result>
+		</action>
+
+		<action name="register" class="userAction" method="saveUser">
+			<result name="success">edit.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="edit" class="userAction" method="updateUser">
+			<result name="success">main.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="updateHead" class="userAction" method="updateHead">
+			<result type="chain">getMenuRow</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="getOnlineUserHead" class="userAction" method="getOnlineUserHead">
+		</action>
+		<action name="toUpdateUser" class="userAction" method="toUpdateUser">
+			<result>modi.jsp</result>
+		</action>
+		<action name="fileUploadAction" class="UploadPicAction" method="execute">
+			<result name="success">/editPic.jsp</result>
+			<param name="uploadDir">/WEB-INF/UploadFiles</param>
+		</action>
+		<action name="uploadmenu" class="UploadMenuAction" method="saveMenu">
+			<result name="success">des.jsp</result>
+		</action>
+		<action name="downloadMenus" class="UploadMenuAction" method="downloadMenus">
+		</action>
+		<action name="upmenu" class="MenusAction" method="addMenu">
+			<result type="chain">getMenuRow</result>
+		</action>
+		<action name="showmenu" class="MenusAction" method="getImg">
+		</action>
+		<action name="search" class="UploadMenuAction" method="unclearMenusList">
+			<result name="success">deslist.jsp</result>
+		</action>
+		<!-- <action name="userList" class="userAction" method="getUserList"> <result>index.jsp</result> 
+			</action> <action name="toUpdateUser" class="userAction" method="toUpdateUser"> 
+			<result>updateUser.jsp</result> </action> <action name="updateUser" class="userAction" 
+			method="updateUser"> <result type="chain">userList</result> </action> <action 
+			name="deleteUser" class="userAction" method="deleteUser"> <result type="chain">userList</result> 
+			</action> <action name="register" class="userAction" method="saveUser"> <result 
+			type="chain">userList</result> </action> -->
+
+	</package>
+
+	<package name="ajax_user" extends="json-default">
+		<action name="ajaxUserList" class="userAction" method="getAjaxUserList">
+			<result name="success" type="json"></result>
+		</action>
+	</package>
+</struts>

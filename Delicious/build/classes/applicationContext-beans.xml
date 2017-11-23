@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+  		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+	<!-- action->(user,service->dao) -->
+	<!-- 第一个里面的”userService“实际上是找到的下面的bean里面的 id值 -->
+	<!-- 部署Struts 2负责系统用户管理的控制器UserAction --> 
+	<!-- property标签用于对bean实例中属性进行赋值，对于基本数据类型的值可以由value直接指定
+	而ref表示对其他bean实例的引用 -->
+	<bean id="userAction" class="com.qst.action.UserAction">
+		<property name="user" ref="user"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<!-- id:bean实例名称，class:bean类全名 -->
+	<bean id="user" class="com.qst.model.User">
+	</bean>
+	<!-- 部署系统用户管理业务逻辑组件UserServiceImpl -->
+	<bean id="userService" class="com.qst.service.impl.UserServiceImpl">
+	<!-- name:bean类的属性名称，ref:要引用bean类的名称 -->
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<!-- 装配通用数据库访问类UserDAOImpl --> 
+	<bean id="userDao" class="com.qst.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="UploadPicAction" class="com.qst.action.UploadPicAction">	
+		<property name="fileService" ref="fileService"></property>
+	</bean>
+	<bean id="fileInfo" class="com.qst.model.FileInfo">
+	</bean>
+	<bean id="fileService" class="com.qst.service.impl.FileServiceImpl">
+		<property name="fileDao" ref="fileDao"></property>
+	</bean>
+	<bean id="fileDao" class="com.qst.dao.impl.FileDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="MenusAction" class="com.qst.action.MenusAction">	
+		<property name="menuService" ref="menuService"></property>
+		<property name="menus" ref="menus"></property>
+	</bean>
+	<bean id="menus" class="com.qst.model.Menus">
+	</bean>
+	<bean id="menuService" class="com.qst.service.impl.MenuServiceImpl">
+		<property name="menuDao" ref="menuDao"></property>
+	</bean>
+	<bean id="menuDao" class="com.qst.dao.impl.MenuDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="UploadMenuAction" class="com.qst.action.UploadMenuAction">	
+		<property name="uploadService" ref="uploadService"></property>
+	</bean>
+	<bean id="uploadMenu" class="com.qst.model.UploadMenu">
+	</bean>
+	<bean id="uploadService" class="com.qst.service.impl.UploadServiceImpl">
+		<property name="uploadMenuDao" ref="uploadMenuDao"></property>
+	</bean>
+	<bean id="uploadMenuDao" class="com.qst.dao.impl.UploadMenuDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+	
+
+
+</beans>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.qst.model.UploadMenu" table="uploadmenu">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="gongyi" type="java.lang.String">
+            <column name="GONGYI" />
+        </property>
+        <property name="kouwei" type="java.lang.String">
+            <column name="KOUWEI" />
+        </property>
+        <property name="make_diff" type="java.lang.String">
+            <column name="MAKE_DIFF" />
+        </property>
+        <property name="make_pretime" type="java.lang.String">
+            <column name="MAKE_PRETIME" />
+        </property>
+        <property name="make_time" type="java.lang.String">
+            <column name="MAKE_TIME" />
+        </property>
+        <property name="make_amount" type="java.lang.String">
+            <column name="MAKE_AMOUNT" />
+        </property>
+         <property name="photo" type="java.lang.String">
+            <column name="PHOTO" />
+        </property>
+        <property name="descr" type="java.lang.String">
+            <column name="DESCR" />
+        </property>
+        <property name="sign" type="java.lang.String">
+            <column name="SIGN" />
+        </property>
+        <property name="zlsc1" type="java.lang.String">
+            <column name="ZLSC1" />
+        </property>
+        <property name="zlyl1" type="java.lang.String">
+            <column name="ZLYL1" />
+        </property>
+        <property name="zlsc2" type="java.lang.String">
+            <column name="ZLSC2" />
+        </property>
+        <property name="zlyl2" type="java.lang.String">
+            <column name="ZLYL2" />
+        </property>
+        <property name="zlsc3" type="java.lang.String">
+            <column name="ZLSC3" />
+        </property>
+        <property name="zlyl3" type="java.lang.String">
+            <column name="ZLYL3" />
+        </property>
+        <property name="flsc1" type="java.lang.String">
+            <column name="FLSC1" />
+        </property>
+        <property name="flyl1" type="java.lang.String">
+            <column name="FLYL1" />
+        </property>
+        <property name="flsc2" type="java.lang.String">
+            <column name="FLSC2" />
+        </property>
+        <property name="flyl2" type="java.lang.String">
+            <column name="FLYL2" />
+        </property>
+        <property name="flsc3" type="java.lang.String">
+            <column name="FLSC3" />
+        </property>
+        <property name="flyl3" type="java.lang.String">
+            <column name="FLYL3" />
+        </property>
+        <property name="step_text" type="java.lang.String">
+            <column name="STEP_TEXT" />
+        </property>
+        <property name="tips" type="java.lang.String">
+            <column name="TIPS" />
+        </property>
+    </class>
+</hibernate-mapping>
